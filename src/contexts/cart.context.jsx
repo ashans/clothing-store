@@ -1,4 +1,5 @@
 import {createContext, useReducer} from "react";
+import {createAction} from "../utils/reducers/action.util";
 
 export const CartContext = createContext({
     cartOpen: false,
@@ -92,10 +93,10 @@ export const CartProvider = ({children}) => {
     const [{cartOpen, cartItems, itemCount, totalValue}, dispatch] = useReducer(cartReducer, INITIAL_STATE);
 
     const setCartOpen = (value) => {
-        dispatch({type: CART_ACTION_TYPES.CHANGE_CART_OPEN, payload: value})
+        dispatch(createAction(CART_ACTION_TYPES.CHANGE_CART_OPEN, value))
     }
     const updateCartState = (cartItems) => {
-        dispatch({type: CART_ACTION_TYPES.SET_CART, payload: deriveCartState(cartItems)})
+        dispatch(createAction(CART_ACTION_TYPES.SET_CART, deriveCartState(cartItems)))
     }
     const addItemToCart = (product) => {
         updateCartState(addItem(cartItems, product))
