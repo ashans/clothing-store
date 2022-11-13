@@ -8,6 +8,7 @@ ReactJS application with firebase support built with support of Udemy React cour
 - ReactJS (18)
 - React Router
 - SCSS
+- Styled Components
 - Firebase Auth
 - Firebase Firestore
 
