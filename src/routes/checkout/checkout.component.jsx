@@ -1,7 +1,8 @@
-import React, {useContext} from "react";
+import React from "react";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import {CartContext} from "../../contexts/cart.context";
 import "./checkout.styles.scss";
+import {useSelector} from "react-redux";
+import {selectCartState} from "../../store/cart/cart.selector";
 
 const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -9,7 +10,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 const Checkout = () => {
-    const {cartItems, totalValue} = useContext(CartContext);
+    const {cartItems, totalValue} = useSelector(selectCartState);
     return (
         <div className="checkout-container">
             <div className="checkout-header">
