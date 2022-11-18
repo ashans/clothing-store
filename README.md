@@ -11,6 +11,7 @@ ReactJS application with firebase support built with support of Udemy React cour
 - Styled Components
 - Redux
 - Redux persist
+- Redux thunk
 - Firebase Auth
 - Firebase Firestore
 
