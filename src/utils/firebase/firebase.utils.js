@@ -96,3 +96,16 @@ export const getCategoriesAndDocuments = async () => {
     const querySnapshots = await getDocs(q);
     return querySnapshots.docs.map(docSnapshot => docSnapshot.data());
 };
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(
+            auth,
+            (userAuth) => {
+                unsubscribe();
+                resolve(userAuth)
+            },
+            reject
+        )
+    })
+}
