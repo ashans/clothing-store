@@ -3,6 +3,7 @@ import CheckoutItem from "../../components/checkout-item/checkout-item.component
 import "./checkout.styles.scss";
 import {useSelector} from "react-redux";
 import {selectCartState} from "../../store/cart/cart.selector";
+import PaymentForm from "../../components/payment-form/payment-form.component";
 
 const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -34,6 +35,7 @@ const Checkout = () => {
                 <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
             ))}
             <span className="total">Total : {formatter.format(totalValue)}</span>
+            <PaymentForm />
         </div>
     );
 };
