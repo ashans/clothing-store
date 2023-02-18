@@ -4,12 +4,8 @@ import {CategoryItem} from "../categories/categories.types";
 
 export type SetIsCartOpen = ActionWithPayload<CART_ACTION_TYPES.CHANGE_CART_OPEN, boolean>
 export type SetCartItems = ActionWithPayload<CART_ACTION_TYPES.SET_CART, CartItem[]>
-export const addItemToCart = withMatcher((cartItems:CartItem[], product:CategoryItem): SetCartItems => createAction(CART_ACTION_TYPES.SET_CART, addItem(cartItems, product)))
-export const removeItemFromCart = withMatcher((cartItems:CartItem[], product:CartItem): SetCartItems => createAction(CART_ACTION_TYPES.SET_CART, removeItem(cartItems, product)))
-export const clearItemFromCart = withMatcher((cartItems:CartItem[], product: CartItem): SetCartItems => createAction(CART_ACTION_TYPES.SET_CART, clearItem(cartItems, product)))
-export const setCartOpen = withMatcher((val: boolean): SetIsCartOpen => createAction(CART_ACTION_TYPES.CHANGE_CART_OPEN, val))
 
-const addItem = (cartItems:CartItem[], product:CategoryItem): CartItem[] => {
+const addItem = (cartItems: CartItem[], product: CategoryItem): CartItem[] => {
     const matching = cartItems.find((item) => item.id === product.id);
 
     if (!matching) {
@@ -25,7 +21,7 @@ const addItem = (cartItems:CartItem[], product:CategoryItem): CartItem[] => {
     return [...cartItems];
 };
 
-const removeItem = (cartItems:CartItem[], product: CartItem) => {
+const removeItem = (cartItems: CartItem[], product: CartItem) => {
     const matching = cartItems.find((item) => item.id === product.id);
 
     if (!matching) {
@@ -41,4 +37,16 @@ const removeItem = (cartItems:CartItem[], product: CartItem) => {
 
 const clearItem = (cartItems: CartItem[], product: CartItem): CartItem[] => {
     return cartItems.filter((item) => item.id !== product.id);
+}
+
+export const setCartOpen = withMatcher((val: boolean): SetIsCartOpen => createAction(CART_ACTION_TYPES.CHANGE_CART_OPEN, val))
+export const setCartItems = withMatcher((cartItems:CartItem[]): SetCartItems => createAction(CART_ACTION_TYPES.SET_CART, cartItems));
+export const addItemToCart = (cartItems: CartItem[], product: CategoryItem): SetCartItems => {
+    return setCartItems(addItem(cartItems, product));
+}
+export const removeItemFromCart = (cartItems: CartItem[], product: CartItem): SetCartItems => {
+    return setCartItems(removeItem(cartItems, product));
+}
+export const clearItemFromCart = (cartItems: CartItem[], product: CartItem): SetCartItems => {
+    return setCartItems(clearItem(cartItems, product));
 }

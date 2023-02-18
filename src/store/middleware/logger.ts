@@ -1,4 +1,8 @@
-export const loggerMiddleware = (enabled) => (store) => (next) => (action) => {
+import {Middleware} from "redux";
+import {RootState} from "../store";
+
+type CustomLoggerResolver = (enabled: boolean) => Middleware<{}, RootState>;
+export const loggerMiddleware: CustomLoggerResolver = (enabled) => (store) => (next) => (action) => {
     if (enabled) {
         if (!action.type) {
             return next(action)
