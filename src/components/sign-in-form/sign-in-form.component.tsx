@@ -4,9 +4,7 @@ import FormInput from "../form-input/form-input.component";
 import "./sign-in-form.styles.scss";
 import {useDispatch} from "react-redux";
 import {emailSignInStart, googleSignInStart} from "../../store/user/user.action";
-import firebase from "firebase/compat";
-import AuthError = firebase.auth.AuthError;
-import {AuthErrorCodes} from "firebase/auth";
+import {AuthErrorCodes, AuthError} from "firebase/auth";
 
 const defaultFormFields = {
     email: "",

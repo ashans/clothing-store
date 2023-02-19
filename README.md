@@ -11,9 +11,12 @@ ReactJS application with firebase support built with support of Udemy React cour
 - Styled Components
 - Redux
 - Redux persist
-- Redux thunk
+- Redux thunk/saga
 - Firebase Auth
 - Firebase Firestore
+- Stripe Payment Gateway
+- Netlify functions
+- Typescript
 
 ## Available Scripts
 
