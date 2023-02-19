@@ -1,6 +1,7 @@
 import {Action, ActionWithPayload, createAction, withMatcher} from "../../utils/reducers/action.util";
 import {USER_ACTION_TYPES} from "./user.types";
 import {AdditionalInformation, UserData} from "../../utils/firebase/firebase.utils";
+import {User} from "firebase/auth";
 
 export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;
 export type GoogleSignInStart = Action<USER_ACTION_TYPES.GOOGLE_SIGN_IN_START>
@@ -8,7 +9,7 @@ export type EmailSignInStart = ActionWithPayload<USER_ACTION_TYPES.EMAIL_SIGN_IN
 export type SignInSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_IN_SUCCESS, UserData>
 export type SignInFailed = ActionWithPayload<USER_ACTION_TYPES.SIGN_IN_FAILED, Error>
 export type SignUpStart = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_START, { email: string; password: string; displayName: string; }>
-export type SignUpSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user: UserData; additionalDetails: AdditionalInformation; }>
+export type SignUpSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user: User; additionalDetails: AdditionalInformation; }>
 export type SignUpFailed = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_FAILED, any>
 export type SignOutStart = Action<USER_ACTION_TYPES.SIGN_OUT_START>
 export type SignOutSuccess = Action<USER_ACTION_TYPES.SIGN_OUT_SUCCESS>
@@ -20,7 +21,7 @@ export const emailSignInStart = (email: string, password: string): EmailSignInSt
     email,
     password
 })
-export const signInSuccess = withMatcher((user: UserData): SignInSuccess => createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user));
+export const signInSuccess = withMatcher((user: UserData & {id: string}): SignInSuccess => createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user));
 export const signInFailed = withMatcher((error: Error): SignInFailed => createAction(USER_ACTION_TYPES.SIGN_IN_FAILED, error));
 
 export const signUpStart = withMatcher((email: string, password: string, displayName: string): SignUpStart => createAction(USER_ACTION_TYPES.SIGN_UP_START, {
@@ -29,7 +30,7 @@ export const signUpStart = withMatcher((email: string, password: string, display
         displayName
     })
 )
-export const signUpSuccess = withMatcher((user: UserData, additionalDetails: AdditionalInformation
+export const signUpSuccess = withMatcher((user: User, additionalDetails: AdditionalInformation
     ): SignUpSuccess => createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, {
         user,
         additionalDetails
