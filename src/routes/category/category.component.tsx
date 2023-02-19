@@ -6,8 +6,11 @@ import {useSelector} from "react-redux";
 import {selectCategoriesLoading, selectCategoriesMap} from "../../store/categories/categories.selector";
 import Spinner from "../../components/spinner/spinner.component";
 
+type CategoryRouteParams = {
+    category: string;
+}
 const Category = () => {
-    const {category} = useParams();
+    const {category} = useParams<keyof CategoryRouteParams>() as CategoryRouteParams;
     const categoriesMap = useSelector(selectCategoriesMap);
     const isLoading = useSelector(selectCategoriesLoading)
 
@@ -21,7 +24,7 @@ const Category = () => {
         <Fragment>
             <h2 className='category-title'>{category.toUpperCase()}</h2>
             {isLoading ? (
-                <Spinner />
+                <Spinner/>
             ) : (
                 <div className="category-container">
                     {products && products.map((product) => (
