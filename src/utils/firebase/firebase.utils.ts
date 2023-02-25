@@ -3,28 +3,26 @@ import {
     createUserWithEmailAndPassword,
     getAuth,
     GoogleAuthProvider,
+    NextOrObserver,
     onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
     signInWithRedirect,
     signOut,
-    User,
-    NextOrObserver
+    User
 } from "firebase/auth";
 import {
     collection,
     doc,
+    DocumentSnapshot,
     getDoc,
     getDocs,
     getFirestore,
     query,
     setDoc,
-    writeBatch,
-    DocumentSnapshot,
-    DocumentData
+    writeBatch
 } from "firebase/firestore";
 import {Category} from "../../store/categories/categories.types";
-import firebase from "firebase/compat";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBy97gluvmufAeVqo7To_Dtk4WMikGHVyQ",

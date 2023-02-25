@@ -4,7 +4,7 @@ ReactJS application with firebase support built with support of Udemy React cour
 
 [Checkout Course](https://www.udemy.com/share/101WH43@oqUIpL9ZSeLEswTukTNYKFeztG5oSByL520Yo7Uh3hdELVrECJMPD4vZFPL3hnMhVQ==/)
 
-## Tech stack
+## Includes
 - ReactJS (18)
 - React Router
 - SCSS
@@ -17,40 +17,36 @@ ReactJS application with firebase support built with support of Udemy React cour
 - Stripe Payment Gateway
 - Netlify functions
 - Typescript
+- PWA support
 
-## Available Scripts
+## How to run
 
-In the project directory, you can run:
+### Prerequisites
+- Installed node with npm
+- Yarn
 
-### `yarn start`
+### Setup
+1. Clone repository
+2. Go inside cloned repository
+3. Install dependencies using `yarn install`
+4. Rename `.env.example` as `.env`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Run
+#### Dev mode
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Run with command `yarn start`. This will open the browser with app loaded.
 
-### `yarn test`
+#### Including netlify functions
+> Netlify functions are used for the integration of payments with stipe payment gateway. These are deployed in as cloud functions when deployed in Netlify cloud
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Create [Stripe](https://stripe.com/) account and go to [Dashboard](https://dashboard.stripe.com/)
+2. Turn on test mode.
+3. Change `.env` file
+   - Change `REACT_APP_STRIPE_PUBLISHABLE_KEY` value to **Publishable key** of stripe
+   - Change `STRIPE_SECRET_KEY` value to **Secret key** of stripe
+4. Install [netlify-cli](https://docs.netlify.com/cli/get-started) globally using command `npm install netlify-cli -g`
+5. Run command `netlify dev` to start the server
 
-### `yarn build`
+### Build
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Run command `yarn build` to create build files in `build` directory
